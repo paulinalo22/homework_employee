@@ -5,7 +5,7 @@
 
 This super fun and functional app allows peeps to manage a company's employees using node, inquirer, and MySQL. Say goodbye to an unorganized company that can't keep track of salries and employees.
 # **Demonstration**
-![](Demo.gif)
+![](Assets/Demo.gif)
 
 ## Table of contents
 
