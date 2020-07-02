@@ -2,13 +2,14 @@ const inquirer = require("inquirer");
 const connection = require("./connection/connection.js");
 const figlet = require("figlet");
 
-// Intro using figlet
+// Intro using figlet AKA cool AF letters that make my work look super professional.
 console.log(figlet.textSync('Employee Tracker', {
     font: 'Standard',
     horizontalLayout: 'default',
     verticalLayout: 'default'
 }));
 
+// AKA Main Menu
 function questions() {
 
     inquirer.prompt({
@@ -22,7 +23,8 @@ function questions() {
             "View Employees",
             "View Departments",
             "View Roles",
-            "Update Employee Manager",
+            "Update Employee Role",
+            "Update Employee's Manager",
             "Delete Employee",
             "Delete Department",
             "Delete Role"
@@ -48,7 +50,10 @@ function questions() {
             case "View Roles":
                 viewRoles()
                 break;
-            case "Update Employee Manager":
+            case "Update Employee Role":
+                updateEmployeeRole()
+                break;  
+            case "Update Employee's Manager":
                 updateEmployee()
                 break;
             case "Delete Employee":
@@ -106,6 +111,7 @@ function questions() {
     })
 }
 
+// This way the main menu will appear again after each action. 
 questions();
 
 function viewDepartment() {
@@ -173,7 +179,45 @@ function viewRoles() {
 }
 
 
-// updating employees
+// Functions that updates manager and role of employee 
+async function updateEmployeeRole(){
+    const employees = await connection.query("SELECT id, first_name, last_name FROM employee")
+    const employeeChoices = employees.map(employee => ({
+        name: `${employee.first_name} ${employee.last_name}`,
+        value: employee.id
+    }))
+
+    const employeeId = await
+        inquirer.prompt(
+            {
+                type: "list",
+                name: "eName",
+                message: "Select employee you want to update:",
+                choices: employeeChoices
+            }
+        )
+
+    const roles = await connection.query("SELECT id, title FROM role")
+    const roleChoices = roles.map(role => ({
+        name: `${role.title}`,
+        value: role.id
+    }))
+
+    const roleId = await
+        inquirer.prompt(
+            {
+                type: "list",
+                name: "eRole",
+                message: "Select role:",
+                choices: roleChoices
+            }
+        )
+    console.log('roleID', roleId)
+    await connection.query("UPDATE role SET title=? WHERE id=?", [roleId.eRole, employeeId.eRole])
+    console.log("Awesome! You have successfully updated employee!")
+    questions();
+
+}
 
 async function updateEmployee() {
     const employees = await connection.query("SELECT id, first_name, last_name FROM employee")
@@ -214,7 +258,8 @@ async function updateEmployee() {
 
 }
 
-// deleting employess
+// Function that deletes employess
+
 
 async function deleteEmployee() {
     const delEmp = await connection.query("SELECT id, first_name, last_name FROM employee")

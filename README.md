@@ -3,8 +3,7 @@
 ![GitHub license](https://img.shields.io/badge/Made%20by-%40paulinalo22-blue)
 
 
-This super fun and functional app allows peeps to manage a company's employees using node, inquirer, and MySQL.
-
+This super fun and functional app allows peeps to manage a company's employees using node, inquirer, and MySQL. Say goodbye to an unorganized company that can't keep track of salries and employees.
 # **Demonstration**
 
 
@@ -20,10 +19,17 @@ This super fun and functional app allows peeps to manage a company's employees u
 - [Test](#Test)
 - [GitHub Info](#GitHub) 
 
+## Description
+        As a business owner
+        I want to be able to view and manage the departments, roles, and employees in my company
+        So that I can organize and plan my business
 
 ## Installation
 
-        npm install
+        npm i inquirer
+        npm i figlet
+        npm i mysql
+        
 
 ## Usage
 
@@ -40,7 +46,7 @@ Productivity
 
 ## Test
 
-Tests: done
+Tests: done and pass with flying colors.
 
 ## GitHub
 
