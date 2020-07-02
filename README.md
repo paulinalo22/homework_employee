@@ -1,4 +1,5 @@
 # **Employee Tracker**
+![](Assets/cool.png)
 
 ![GitHub license](https://img.shields.io/badge/Made%20by-%40paulinalo22-blue)
 
